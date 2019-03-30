@@ -4,6 +4,8 @@
   "description": "Project @ 42 school",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
+    "start-dbg": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +19,9 @@
   },
   "homepage": "https://github.com/KevinTBaker/Ecommerce-Website#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
+    "jade": "^1.11.0",
+    "mongoose": "^5.4.20"
   }
 }
