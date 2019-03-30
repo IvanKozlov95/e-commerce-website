@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/admin', (req, res, next) => {
   Article.find({})
-    .then(articles => res.render('dashboard', { articles }))
+    .then(articles => res.render('admin', { articles }))
     .catch(next);
 });
 
