@@ -10,8 +10,10 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   User.findOne({ name: req.body.name })
     .then((user) => {
-        if (user)
+        if (user) {
+          res.cookie("user", user._id);
           res.redirect('/dashboard');
+        }
         else
           res.render('login');
     })
