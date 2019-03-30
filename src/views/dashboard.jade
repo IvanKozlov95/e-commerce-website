@@ -10,9 +10,13 @@ block content
       each item in articles
         .card(id=`article-${item._id}`)
           .card-body
-            h5.card-title= item.name
-            p.card-text= item.categories
-            p.card-text= item.price + "$"
+            .row
+              .col-md-4
+                h5.card-title= item.name
+              .col-md-6
+                span= item.categories
+              .col-md-2
+                span= item.price + "$"
             a(href='#' onclick=`addToCard(${JSON.stringify(item)})`).btn.btn-success Add to card
     div.col-md
       h3 Card
@@ -24,8 +28,12 @@ block content
       each item in user.card
         .card(id=`card-article-${item.article._id}`)
           .card-body
-            h5.card-title= "Name: " + item.article.name
-            p.card-text= "Description: " + item.article.categories
-            p.card-text= "Amount: " + item.quantity
+            .row
+              .col-md-4
+                h5.card-title= "Name: " + item.article.name
+              .col-md-5
+                p.card-text= "Description: " + item.article.categories
+              .col-md-3
+                p.card-text= "Amount: " + item.quantity
             a(href='#' onclick=`remoteCardItem("${item.article._id}")`).btn.btn-danger Delete
 
