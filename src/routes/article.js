@@ -12,7 +12,7 @@ router.post('/', (req, res, next) => {
 
 router.delete('/', (req, res, next) => {
   const articleId = req.body.id;
-  Article.remove({ articleId })
+  Article.remove({ _id: articleId })
     .then(() => res.send('All clear boss'))
     .catch(next);
 });
