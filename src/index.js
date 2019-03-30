@@ -48,7 +48,7 @@ app.use((err, req, res, next) => {
 
   console.error(err);
   res.status(err.status || 500);
-  res.send({ message: err.message });
+  res.send(err.message);
 });
 
 app.listen(3000, () => console.log(`Listening on port: ${3000}`));

@@ -10,4 +10,11 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
+router.delete('/', (req, res, next) => {
+  const articleId = req.body.id;
+  Article.remove({ articleId })
+    .then(() => res.send('All clear boss'))
+    .catch(next);
+});
+
 module.exports = router;

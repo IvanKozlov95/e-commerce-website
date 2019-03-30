@@ -2,3 +2,7 @@ body {
   background-image: linear-gradient(to right, #a8c0ff, #3f2b96);
   padding: 30px;
 }
+
+.card {
+  margin: 10px;
+}
