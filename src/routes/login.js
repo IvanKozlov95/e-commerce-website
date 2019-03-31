@@ -9,12 +9,14 @@ router.get('/', userAnon,  (req, res, next) => {
 });
 
 router.post('/', userAnon, (req, res, next) => {
-  User.findOne({ name: req.body.name, password: req.body.password })
+  const name = req.body.name;
+  const password = req.body.password;
+  User.findOne({ name: { $in: [name] }, password: { $in: [password] } })
     .then((user) => {
         console.log(user);
         if (user) {
           res.cookie("user", user._id);
-          res.redirect('/dashboard');
+          res.redirect('/dashboard')
         }
         else
           res.render('login', { message: "Nope" });
