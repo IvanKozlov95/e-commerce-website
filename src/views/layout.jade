@@ -28,7 +28,9 @@ body
 				a.nav-item.nav-link.active(href='/dashboard')
 					| Home 
 					span.sr-only (current)
-				a.nav-item.nav-link(href='/dashboard/admin') Admin
+				if user && user.isAdmin
+					a.nav-item.nav-link.active(href='/dashboard/admin') Manage articles
+					a.nav-item.nav-link.active(href='/users/manage') Manage users
 				a.nav-item.nav-link(href='/') About us
 		form.form-inline
 			if user
