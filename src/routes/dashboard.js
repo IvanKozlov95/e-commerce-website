@@ -16,8 +16,11 @@ router.get('/', userLogged, addUser, (req, res, next) => {
       ],
     };
   }
+  const card = user.card.filter(item => !!item.article);
+  console.log('Filtered card');
+  console.log(card);
   Article.find(query)
-    .then(articles => res.render('dashboard', { articles, user }))
+    .then(articles => res.render('dashboard', { articles, user, card }))
     .catch(next);
 });
 
