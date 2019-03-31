@@ -2,11 +2,13 @@ extends layout
 
 block head
   script(src="/js/dash.js")
+  script(src="/js/search.js")
 
 block content
   div.row
     div.col-md
       h2 Articles
+      input.form-control(type='text', placeholder='Search', aria-label='Search' onkeypress="search(event)")
       each item in articles
         .card(id=`article-${item._id}`)
           .card-body
