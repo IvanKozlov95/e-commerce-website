@@ -7,8 +7,9 @@ require('./models');
 
 const userRouter      = require('./routes/user');
 const loginRouter     = require('./routes/login');
+const logoutRouter    = require('./routes/logout');
 const dashboardRouter = require('./routes/dashboard');
-const articleRouter = require('./routes/article');
+const articleRouter   = require('./routes/article');
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 
 app.use('/users', userRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/article', articleRouter);
 app.get('/', (req, res) => res.send('Hello World!'));
