@@ -3,7 +3,7 @@ const User            = mongoose.model('User');
 
 const isAdmin = (user) => {
   const name = user.name.toLowerCase();
-  return name === 'ivan' || name === 'Kevin';
+  return name === 'ivan' || name === 'kevin';
 }
 
 function addUser(req, res, next) {
