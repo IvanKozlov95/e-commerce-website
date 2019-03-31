@@ -17,7 +17,7 @@ router.post('/', userAnon, (req, res, next) => {
           res.redirect('/dashboard');
         }
         else
-          res.render('login');
+          res.render('login', { message: "Nope" });
     })
     .catch(next);
 });

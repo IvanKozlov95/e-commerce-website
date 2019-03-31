@@ -14,3 +14,7 @@ body {
   /* background-color: #e3f2fd; */
   color: antiquewhite !important;
 }
+
+.label-danger {
+  color: red;
+}
