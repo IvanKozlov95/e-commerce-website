@@ -8,8 +8,9 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  User.findOne({ name: req.body.name })
+  User.findOne({ name: req.body.name, password: req.body.password })
     .then((user) => {
+        console.log(user);
         if (user) {
           res.cookie("user", user._id);
           res.redirect('/dashboard');
