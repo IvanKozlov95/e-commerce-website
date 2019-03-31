@@ -8,12 +8,11 @@ router.get('/', userLogged, addUser, (req, res, next) => {
   let query = {};
   const user = req.user;
   const search = req.query.search;
-  console.log(search);
   if (search) {
     query = {
       $or: [
-        { name: { $regex: `.*${search}.*` } },
-        { category: `.*${search}.*` },
+        { name: { $regex: `.*${search}.*`, $options: 'i' } },
+        { category: { $regex: `.*${search}.*`, $options: 'i' } },
       ],
     };
   }
