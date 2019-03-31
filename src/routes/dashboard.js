@@ -5,8 +5,19 @@ const Article 	      = mongoose.model('Article');
 const { userLogged, userAdmin, addUser }  = require('../mw/user');
 
 router.get('/', userLogged, addUser, (req, res, next) => {
+  let query = {};
   const user = req.user;
-  Article.find({})
+  const search = req.query.search;
+  console.log(search);
+  if (search) {
+    query = {
+      $or: [
+        { name: { $regex: `.*${search}.*` } },
+        { category: `.*${search}.*` },
+      ],
+    };
+  }
+  Article.find(query)
     .then(articles => res.render('dashboard', { articles, user }))
     .catch(next);
 });
