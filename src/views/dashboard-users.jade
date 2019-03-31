@@ -1,0 +1,21 @@
+extends layout
+
+block head
+  script(src="/js/admin.js")
+
+block content
+  .row
+    .col-md-6
+      h2 Users
+      each item, idx in users
+        if idx % 3 ===0
+          each j in [0,1,2]
+            - var user=users[idx + j]
+            if user
+              .card(id=`user-${user._id}`)
+                .card-body
+                  .row
+                    .col-md-8
+                      h5.card-title= "Name: " + user.name
+                    .col-md-4
+                      a(href='#' onclick=`deleteUser("${user._id}")`).btn.btn-danger Delete

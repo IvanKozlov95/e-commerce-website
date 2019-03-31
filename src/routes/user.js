@@ -2,7 +2,7 @@ const express     = require('express');
 const router      = express.Router();
 const mongoose    = require('mongoose');
 const User 	      = mongoose.model('User');
-const { userAnon, userLogged}  = require('../mw/user');
+const { userAnon, userLogged, userAdmin, addUser }  = require('../mw/user');
 
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -64,6 +64,20 @@ router.post('/card/clear', userLogged, (req, res, next) => {
 
   User.updateOne({ _id: userId }, { card: [] })
     .then(() => res.send('done'))
+    .catch(next);
+});
+
+router.get('/manage', userLogged, addUser, userAdmin, (req, res, next) => {
+  User.find({
+    _id: { $ne: req.cookies.user }
+  })
+    .then((users) => res.render('dashboard-users', { users, user: req.user }))
+    .catch(next);
+});
+
+router.delete('/', userLogged, addUser, userAdmin, (req, res, next) => {
+  User.remove({ _id: req.body.id })
+    .then(() => res.send('ok'))
     .catch(next);
 });
 
