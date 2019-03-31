@@ -14,7 +14,7 @@ block content
               .col-md-4
                 h5.card-title= "Name: " + item.name
               .col-md-5
-                p.card-text= "Description: " + item.categories
+                p.card-text= "Description: " + item.category
               .col-md-3
                 p.card-text= "Price: " + item.price + '$'
             a(href='#' onclick=`deleteArticle("${item._id}")`).btn.btn-danger Delete
@@ -34,7 +34,7 @@ block content
         div.form-group
           div.input
             span.label Categories
-            input(type="text", name="categories").form-control
+            input(type="text", name="category").form-control
 
         div.form-group
           div.actions

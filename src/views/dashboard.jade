@@ -16,7 +16,7 @@ block content
               .col-md-4
                 h5.card-title= item.name
               .col-md-6
-                span= item.categories
+                span= item.category
               .col-md-2
                 span= item.price + "$"
             a(href='#' onclick=`addToCard(${JSON.stringify(item)})`).btn.btn-success Add to card
@@ -24,17 +24,17 @@ block content
       h3 Card
       .row
         .col-md-10
-          h4= `Total price = ${user.card.reduce((total, item) => total + item.quantity * parseInt(item.article.price), 0)}`
+          h4= `Total price = ${card.reduce((total, item) => total + item.quantity * parseInt(item.article.price), 0)}`
         .col-md
            a(href='#' onclick=`clearCard()`).btn.btn-primary Buy
-      each item in user.card
+      each item in card
         .card(id=`card-article-${item.article._id}`)
           .card-body
             .row
               .col-md-4
                 h5.card-title= "Name: " + item.article.name
               .col-md-5
-                p.card-text= "Description: " + item.article.categories
+                p.card-text= "Category: " + item.article.category
               .col-md-3
                 p.card-text= "Amount: " + item.quantity
             a(href='#' onclick=`remoteCardItem("${item.article._id}")`).btn.btn-danger Delete
