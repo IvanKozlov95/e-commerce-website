@@ -2,21 +2,22 @@ const express     = require('express');
 const router      = express.Router();
 const mongoose    = require('mongoose');
 const User 	      = mongoose.model('User');
+const { userAnon, userLogged}  = require('../mw/user');
 
 const ObjectId = mongoose.Types.ObjectId;
 
-router.get('/register', (req, res, next) => {
+router.get('/register', userAnon, (req, res, next) => {
   res.render('register');
 });
 
-router.post('/register', (req, res, next) => {
+router.post('/register', userAnon, (req, res, next) => {
   const user = new User(req.body);
   user.save()
     .then(() => res.redirect('/dashboard'))
     .catch(next);
 });
 
-router.post('/card', (req, res, next) => {
+router.post('/card', userLogged, (req, res, next) => {
   const articleId = req.body.id;
   const userId = req.cookies.user;
 
@@ -46,20 +47,19 @@ router.post('/card', (req, res, next) => {
     .catch(next);
 });
 
-router.delete('/card', (req, res, next) => {
+router.delete('/card', userLogged, (req, res, next) => {
   const articleId = req.body.id;
   const userId = req.cookies.user;
 
   User.updateOne(
       { _id: userId },
-      // { $pull: { 'card.$.article': { $in: [ObjectId(articleId)] } } })
       { $pull: { card : { article : ObjectId(articleId) } } },
   )
   .then(() => res.send('asd'))
   .catch(next);
 });
 
-router.post('/card/clear', (req, res, next) => {
+router.post('/card/clear', userLogged, (req, res, next) => {
   const userId = req.cookies.user;
 
   User.updateOne({ _id: userId }, { card: [] })
