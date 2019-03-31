@@ -12,11 +12,28 @@ head
 
 	block head
 body
-	a(href='/')  Home 
-	a(href='/login') Login 
-	a(href='/dashboard')  Items
-	a(href='/register') Register
-	a(href='/admin_dashboard')  Admin Dashboard
-	a(href='')
+	//- a(href='/')  Home 
+	//- a(href='/login') Login 
+	//- a(href='/dashboard')  Items
+	//- a(href='/register') Register
+	//- a(href='/admin_dashboard')  Admin Dashboard
+	//- a(href='')
+
+	nav.navbar.navbar-expand-md.navbar-light.bg-dark
+		a.navbar-brand(href='#') Navbar
+		button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNavAltMarkup', aria-controls='navbarNavAltMarkup', aria-expanded='false', aria-label='Toggle navigation')
+			span.navbar-toggler-icon
+		#navbarNavAltMarkup.collapse.navbar-collapse
+			.navbar-nav
+				a.nav-item.nav-link.active(href='/dashboard')
+					| Home 
+					span.sr-only (current)
+				a.nav-item.nav-link(href='/dashboard/admin') Admin
+				a.nav-item.nav-link(href='/') About us
+		form.form-inline
+			if user
+				a.nav-item.nav-link(href='/logout') Logout
+			else
+				a.nav-item.nav-link(href='/login') Login/Register
 	div.container
 		block content
